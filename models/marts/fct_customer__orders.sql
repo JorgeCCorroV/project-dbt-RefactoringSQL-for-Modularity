@@ -36,9 +36,10 @@ customer_orders as (
             over(partition by orders.customer_id)
             as customer_total_lifetime_value,
 
-        --Let's take some notes: if we add the following array_agg() function, the script does not run
-        -- array_agg(distinct orders.order_id) over(partition by orders.customer_id) as customer_order_ids
-        -- However, the customer_order_ids is not being used in the final table 
+        /*Let's take some notes: 
+        if we add the following array_agg() function, the script does not run:
+        array_agg(distinct orders.order_id) over(partition by orders.customer_id) as customer_order_ids
+        However, the customer_order_ids is not being used in the final table */
 
     from orders
         inner join customers
